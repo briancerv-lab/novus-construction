@@ -1,0 +1,81 @@
+import { Link } from "react-router-dom";
+import { Button } from "../components/ui/Button";
+import { CheckCircle2 } from "lucide-react";
+
+export function Services() {
+  const services = [
+    {
+      title: "ADU Construction",
+      desc: "Maximize your property value and generate passive income with a turnkey Accessory Dwelling Unit. We handle the complex local zoning laws, architectural plans, and permitting for you.",
+      img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2940&auto=format&fit=crop",
+      features: ["Site Prep & Foundation", "Framing & Roofing", "MEP Installation", "High-End Finishes"]
+    },
+    {
+      title: "Full Home Remodels",
+      desc: "Breathe new life into your property. From structural changes to cosmetic overhauls, we execute complex architectural plans with absolute precision and minimal disruption.",
+      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2940&auto=format&fit=crop",
+      features: ["Structural Modifications", "Kitchen & Bath Overhauls", "Flooring & Paint", "Custom Millwork"]
+    },
+    {
+      title: "Commercial Tenant Improvements (TI)",
+      desc: "We build out your commercial space quickly so you can open your doors and generate revenue. Fully compliant with ADA, fire codes, and commercial permitting requirements.",
+      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2869&auto=format&fit=crop",
+      features: ["Retail & Office Build-outs", "Restaurant Conversions", "ADA Compliance", "After-Hours Work Available"]
+    }
+  ];
+
+  return (
+    <div className="pt-24 pb-24">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="max-w-3xl mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold text-novus-slate mb-6">Master Craftsmanship Across Every Trade.</h1>
+          <p className="text-xl text-gray-600">
+            Novus Construction Inc. specializes in high-end residential and commercial construction across Southern California. We bring commercial-grade precision to every project we touch.
+          </p>
+        </div>
+
+        <div className="space-y-24">
+          {services.map((service, i) => (
+            <div key={i} className={`flex flex-col ${i % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}>
+              <div className="w-full lg:w-1/2">
+                <div className="aspect-[4/3] rounded-sm overflow-hidden bg-gray-100">
+                  <img src={service.img} alt={service.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                </div>
+              </div>
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-3xl font-bold text-novus-slate mb-4">{service.title}</h2>
+                <p className="text-lg text-gray-600 mb-8">{service.desc}</p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  {service.features.map((feature, j) => (
+                    <li key={j} className="flex items-center gap-2 text-novus-slate font-medium">
+                      <CheckCircle2 className="w-5 h-5 text-novus-orange shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Button asChild>
+                  <Link to="/contact">Get an Estimate</Link>
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Specialty Trades */}
+        <div className="mt-32 bg-novus-slate text-white p-12 rounded-sm">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4">Specialty Trades</h2>
+            <p className="text-gray-400">In addition to general contracting, we self-perform and manage specialized trades to ensure quality control at every step.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+            {["Structural Framing", "Drywall & Taping", "Custom Stucco", "Roofing Systems", "Finish Carpentry"].map((trade, i) => (
+              <div key={i} className="p-4 border border-gray-700 rounded-sm bg-gray-800/50">
+                <span className="font-medium">{trade}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

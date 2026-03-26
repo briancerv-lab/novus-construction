@@ -1,0 +1,88 @@
+import { Link } from "react-router-dom";
+import { Button } from "../components/ui/Button";
+
+export function Portfolio() {
+  const projects = [
+    {
+      title: "Modern Minimalist ADU",
+      category: "ADU Construction",
+      location: "Silver Lake, CA",
+      img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2950&auto=format&fit=crop"
+    },
+    {
+      title: "Commercial TI Build-out",
+      category: "Commercial",
+      location: "Irvine, CA",
+      img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2938&auto=format&fit=crop"
+    },
+    {
+      title: "Luxury Kitchen Overhaul",
+      category: "Remodel",
+      location: "Newport Beach, CA",
+      img: "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?q=80&w=2940&auto=format&fit=crop"
+    },
+    {
+      title: "1,500 Sq Ft Second-Story Addition",
+      category: "Addition",
+      location: "Pasadena, CA",
+      img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2953&auto=format&fit=crop"
+    },
+    {
+      title: "Contemporary Bathroom Transformation",
+      category: "Remodel",
+      location: "West Hollywood, CA",
+      img: "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2939&auto=format&fit=crop"
+    },
+    {
+      title: "Structural Framing & Drywall",
+      category: "Commercial",
+      location: "Santa Monica, CA",
+      img: "https://images.unsplash.com/photo-1541888086925-0c13d4f47c54?q=80&w=2940&auto=format&fit=crop"
+    }
+  ];
+
+  return (
+    <div className="pt-24 pb-24 bg-novus-light min-h-screen">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="max-w-3xl mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold text-novus-slate mb-6">Our Work.</h1>
+          <p className="text-xl text-gray-600">
+            100% real projects. Zero stock photos. Explore our recent case studies across Southern California.
+          </p>
+        </div>
+
+        {/* Filters (Visual only for MVP) */}
+        <div className="flex flex-wrap gap-4 mb-12">
+          {["All Projects", "ADUs", "Remodels", "Commercial", "Additions"].map((filter, i) => (
+            <button 
+              key={i} 
+              className={`px-6 py-2 rounded-full text-sm font-medium border transition-colors ${i === 0 ? 'bg-novus-slate text-white border-novus-slate' : 'bg-white text-novus-slate border-gray-200 hover:border-novus-slate'}`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, i) => (
+            <div key={i} className="group bg-white rounded-sm overflow-hidden shadow-sm border border-gray-100">
+              <div className="aspect-[4/3] overflow-hidden relative bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-400 font-medium">Image Coming Soon</span>
+              </div>
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="text-xs font-bold text-novus-orange uppercase tracking-wider">{project.category}</span>
+                  <span className="text-xs text-gray-500">{project.location}</span>
+                </div>
+                <h3 className="text-xl font-bold text-novus-slate mb-4">{project.title}</h3>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link to="/contact">Discuss a Similar Project</Link>
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
